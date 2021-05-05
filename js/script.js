@@ -28,11 +28,29 @@ function isInArray(elemento, array) {
 
 var bombe = [];
 var tentativi = [];
-var tentativiMax = 84;
 var punteggio = 0;
+// var tentativiMax = 84;
+var difficolta;
+do {
+    difficolta = parseInt(prompt("Inserisci il livello di difficoltà"))
+} while (difficolta < 0 || difficolta > 2 || isNaN(difficolta));
+var maxRange;
+
+switch (difficolta) {
+    case 0:
+        maxRange = 100;
+        break;
+    case 1:
+        maxRange = 80;
+        break;
+    case 2:
+        maxRange = 50;
+        break;
+}
+
 
 while (bombe.length < 16) {
-    var bombaSingola = randomNumber(1, 100);
+    var bombaSingola = randomNumber(1, maxRange);
     if (!isInArray(bombaSingola, bombe)) {
         bombe.push(bombaSingola);
     }
@@ -41,12 +59,14 @@ while (bombe.length < 16) {
 //bombe.sort(function(a, b){return a-b});
 console.log(bombe);
 
+var tentativiMax = maxRange - bombe.length;
+
 var gameover = false;
 while (tentativi.length < tentativiMax && gameover == false) {
 
     do {
-        var tentativoUtente = parseInt(prompt("inserisci un numero da 1 a 100"));
-    } while (tentativoUtente < 1 || tentativoUtente > 100 || isNaN(tentativoUtente) || isInArray(tentativoUtente, tentativi));
+        var tentativoUtente = parseInt(prompt("inserisci un numero da 1 a " + maxRange));
+    } while (tentativoUtente < 1 || tentativoUtente > maxRange || isNaN(tentativoUtente) || isInArray(tentativoUtente, tentativi));
 
     if (isInArray(tentativoUtente, bombe)) {
         gameover = true
