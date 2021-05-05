@@ -32,7 +32,7 @@ var punteggio = 0;
 // var tentativiMax = 84;
 var difficolta;
 do {
-    difficolta = parseInt(prompt("Inserisci il livello di difficoltà"))
+    difficolta = parseInt(prompt("Inserisci il livello di difficoltà\nScegli tra 0, 1, 2"))
 } while (difficolta < 0 || difficolta > 2 || isNaN(difficolta));
 var maxRange;
 
